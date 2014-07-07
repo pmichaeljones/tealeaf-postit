@@ -6,7 +6,21 @@ class PostsController < ActionController::Base
   end
 
   def show
-    @post = Post.find[params[:id]]
+    @post = Post.find(params[:id])
+    render layout: "application"
   end
+
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
 
 end
