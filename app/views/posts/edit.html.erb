@@ -1,18 +1,5 @@
 <h1>The Edit Page</h1>
 
-  <% @post.errors.full_messages.each do |msg| %>
-    <div class="alert alert-error">
-      <%= msg %>
-    </div>
-  <% end %>
+<%= render 'shared/form_errors' %>
 
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br/>
-  <%= f.submit "Update This Post" %>
-<% end %>
+<%= render 'shared/form', button_name: 'Edit This Post' %>
