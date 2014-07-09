@@ -1,0 +1,6 @@
+<%= render 'shared/content_title', title: "All The Current Categories" %>
+
+<% @categories.each do |cat| %>
+  <li><%= cat.name %> <%= link_to " (Edit)", edit_category_path(cat) %> </li>
+<% end %>
+
