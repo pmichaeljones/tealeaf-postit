@@ -10,3 +10,22 @@
   <%= @post.description %>
 </p>
 <hr/>
+
+<!-- Looks to see if there are any current comments. If not, nothing will show up -->
+<% if @post.comments.any? %>
+  <% @post.comments.each do |comment| %>
+    <div class="well">
+      <%= comment.body %>
+      <br/>
+      <small>Posted by: <%= comment.creator.username %></small><br/>
+      <small>Posted on: <%= good_looking_time(comment.created_at) %></small>
+    </div>
+  <% end %>
+<% end %>
+
+ <!-- here goes the comment form -->
+<%= form_for [@post, new_comment(@comment)] do |f| %>
+  <%= f.text_area :body %>
+  <br/>
+  <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% end %>

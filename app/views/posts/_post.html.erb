@@ -3,11 +3,11 @@
 
       <%= render post.categories %>
 
-      <h4><%= link_to post.title, post.url %></h4>
+      <h4><%= link_to post.title, good_url(post.url), :target => "blank" %></h4> <!-- good_url is a application helper -->
       <p><%= post.description %></p>
         <p>
-          <span class='quiet'>posted by:</span> <%= post.creator.username %>
-          <small>at <%= post.created_at %></small>
+          <span class=''>Posted by: <%= post.creator.username %></span><br/>
+          <span class=''>Posted on: <%= good_looking_time(post.created_at) %></span>
         </p>
       <small>
         <span>

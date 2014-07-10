@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comment.creator = User.first
   end
 
   def new
