@@ -14,10 +14,14 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   def create
+    #binding.pry
+    #@categories = Category.all
     @post = Post.new(post_params)
+    @post.category_ids = params[:category_id].keys
     @post.creator = User.first #change once we have authentication
 
     if @post.save
@@ -30,9 +34,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
   end
 
   def update
+    @post.category_ids = params[:category_id].keys
 
     if @post.update(post_params)
       flash[:notice] = "The Post was Edited Successfully."
