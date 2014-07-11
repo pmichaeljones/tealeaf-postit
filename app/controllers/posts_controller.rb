@@ -19,9 +19,9 @@ class PostsController < ApplicationController
 
   def create
     #binding.pry
-    #@categories = Category.all
+    @categories = Category.all
     @post = Post.new(post_params)
-    @post.category_ids = params[:category_id].keys
+    params[:category_id].nil? ? @post.category_ids = [] : @post.category_ids = params[:category_id].keys
     @post.creator = User.first #change once we have authentication
 
     if @post.save
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.category_ids = params[:category_id].keys
+    params[:category_id].nil? ? @post.category_ids = [] : @post.category_ids = params[:category_id].keys
 
     if @post.update(post_params)
       flash[:notice] = "The Post was Edited Successfully."
