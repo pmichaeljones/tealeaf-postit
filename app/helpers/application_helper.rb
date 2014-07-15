@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def good_looking_time(time)
-    time.strftime("%A %B %e %Y")
+    time.strftime("%m/%d/%Y %l:%M%P %Z")
   end
 
 

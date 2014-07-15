@@ -13,10 +13,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="control-group">
-    <% @categories.each do |cat| %>
-      <%= f.check_box "category_id[#{cat.id}]", ":" + "#{cat.name}" ) %>
-      <%= f.label (":" + cat.name, "#{cat.name}") %>
-      <% end %>
+    <%= f.label "Categories" %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: 'checkbox inline') {cb.check_box(class: 'checkbox') + cb.text} %>
+    <% end %>
   </div>
   <%= f.submit button_name, class: "btn btn-primary" %>
 <% end %>

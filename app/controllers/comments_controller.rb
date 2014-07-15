@@ -2,12 +2,17 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.build(comment_params)
     @comment.creator = User.first
 
-    @post.comments << @comment
+    if @comment.save
+      flash[:notice] = "Your comment was added"
+      redirect_to post_path(@post)
+    else
+      #binding.pry
+      render 'posts/show'
+    end
 
-    render 'posts/show'
   end
 
   private

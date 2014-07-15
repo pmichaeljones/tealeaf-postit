@@ -9,36 +9,32 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comment.creator = User.first
+    #@comment.creator = User.first
   end
 
   def new
     @post = Post.new
-    @categories = Category.all
   end
 
   def create
     #binding.pry
-    @categories = Category.all
     @post = Post.new(post_params)
-    params[:category_id].nil? ? @post.category_ids = [] : @post.category_ids = params[:category_id].keys
     @post.creator = User.first #change once we have authentication
 
     if @post.save
       flash[:notice] = "Post was saved successfully."
       redirect_to posts_path
     else
+      binding.pry
       render :new
     end
 
   end
 
   def edit
-    @categories = Category.all
   end
 
   def update
-    params[:category_id].nil? ? @post.category_ids = [] : @post.category_ids = params[:category_id].keys
 
     if @post.update(post_params)
       flash[:notice] = "The Post was Edited Successfully."
@@ -52,7 +48,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def set_post
