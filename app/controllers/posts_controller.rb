@@ -25,7 +25,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post was saved successfully."
       redirect_to posts_path
     else
-      binding.pry
+      #binding.pry
       render :new
     end
 

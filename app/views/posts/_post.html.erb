@@ -3,7 +3,7 @@
 
       <%= render post.categories %>
 
-      <h4><%= link_to post.title, good_url(post.url), :target => "blank" %></h4> <!-- good_url is a application helper -->
+      <h4><%= link_to post.title, good_url(post.url), :target => "blank" %></h4> <!-- good_url is an application helper -->
       <p><%= post.description %></p>
         <p>
           <span class=''>Posted by: <%= post.creator.username %></span><br/>
