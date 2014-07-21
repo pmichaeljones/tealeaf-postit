@@ -1,6 +1,8 @@
+<% if logged_in? %>
 <p class="pull-right">
   (<%= link_to "Edit This Post", edit_post_path(@post) %>)
 </p>
+<% end %>
 
 <p> <%= render @post.categories %> </p>
 
@@ -16,11 +18,13 @@
  <!-- here goes the comment form -->
 <%= render 'shared/form_errors', object: @comment %>
 
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.label :body, "Leave a Comment" %>
-  <%= f.text_area :body, rows: 3, class: 'span4' %>
-  <br/>
-  <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= f.label :body, "Leave a Comment" %>
+    <%= f.text_area :body, rows: 3, class: 'span4' %>
+    <br/>
+    <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+  <% end %>
 <% end %>
 
 <h3>Comments:</h3>

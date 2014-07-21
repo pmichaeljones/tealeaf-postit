@@ -12,15 +12,25 @@
       <% Category.all.each do |cat| %>
       <li><%= link_to cat.name, category_path(cat) %></li>
       <% end %>
-      <li><%= link_to "+New Category", new_category_path %>
+      <% if logged_in? %>
+        <li><%= link_to "+New Category", new_category_path %>
+      <% end %>
     </ul>
 </div>
+<% if logged_in? %>
   <div class="nav_item">
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
+  </div>
+   <div class="nav_item">
+    <%= link_to 'Log Out', logout_path, class: 'btn btn-small' %>
+  </div>
+<% end %>
+<% if not logged_in? %>
+   <div class="nav_item">
+    <%= link_to 'Login', login_path, class: 'btn btn-small' %>
   </div>
   <div class="nav_item">
     <%= link_to 'New User Sign-Up', register_path, class: 'btn btn-success btn-small' %>
   </div>
-   <div class="nav_item">
-    <%= link_to 'Login', login_path, class: 'btn btn-small' %>
-  </div>
+<% end %>
+

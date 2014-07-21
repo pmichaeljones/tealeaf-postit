@@ -9,8 +9,11 @@ class UsersController < ApplicationController
     #binding.pry
 
     if @user.save
-      redirect_to root_path
+      flash[:notice] = "Registration Successful."
+      session[:user_id] = @user.id
+      redirect_to login_path
     else
+      flash[:notice] = "There was a problem with registration."
       render '/users/new'
     end
 

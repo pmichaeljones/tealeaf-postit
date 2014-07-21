@@ -5,21 +5,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    #binding.pry
-    user = User.find_by_username(params[:username])
+    user = User.where(username: params[:username]).first
 
-    #binding.pry
-
-    if user.authenticate(params[:password])
-      flash[:notice] = "Login Successful!"
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:notice] = "Login successful"
       redirect_to root_path
     else
-      flash[:error] = "Something is wrong with your username or password."
-      render 'sessions/new'
+      flash.now[:error] = "Something went wrong."
+      render :new
     end
 
-
-
   end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:notice] = "You've logged out."
+    redirect_to root_path
+  end
+
 
 end

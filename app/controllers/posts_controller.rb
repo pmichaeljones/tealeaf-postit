@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update]
-
+  before_action :require_user, except: [:show, :index]
 
   def index
     @posts = Post.all
@@ -9,7 +9,6 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    #@comment.creator = User.first
   end
 
   def new
@@ -19,8 +18,8 @@ class PostsController < ApplicationController
   def create
     #binding.pry
     @post = Post.new(post_params)
-    @post.creator = User.first #change once we have authentication
-
+    @post.creator = current_user #change once we have authentication
+    #binding.pry
     if @post.save
       flash[:notice] = "Post was saved successfully."
       redirect_to posts_path
