@@ -1,0 +1,19 @@
+<h2><%= current_user.first_name %>'s Profile</h2>
+<h5>First Name:</h5> <%= current_user.first_name %>
+<h5>Last Name:</h5> <%= current_user.last_name %>
+<h5>Username:</h5> <%= current_user.username %>
+<br/>
+<h2><%= current_user.first_name %>'s Posts</h2>
+<% current_user.posts.each do |post| %>
+  <%= render 'posts/post', post: post %>
+  <% end %>
+  <br/>
+<h2><%= current_user.first_name %>'s Comments</h2>
+  <% current_user.comments.each do |comment| %>
+    <div class="well">
+      <%= comment.body %>
+      <br/>
+      <small>Posted on: <%= good_looking_time(comment.created_at) %></small><br/>
+      <small><%= link_to "Original Article: #{comment.post.title}", post_path(comment.post) %></small>
+    </div>
+  <% end %>
