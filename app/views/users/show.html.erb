@@ -1,15 +1,28 @@
-<h2><%= current_user.first_name %>'s Profile</h2>
-<h5>First Name:</h5> <%= current_user.first_name %>
-<h5>Last Name:</h5> <%= current_user.last_name %>
-<h5>Username:</h5> <%= current_user.username %>
+<h2><%= @user.first_name %>'s Profile</h2>
+<h5>First Name:</h5> <%= @user.first_name %>
+<h5>Last Name:</h5> <%= @user.last_name %>
+<h5>Username:</h5> <%= @user.username %>
 <br/>
-<h2><%= current_user.first_name %>'s Posts</h2>
-<% current_user.posts.each do |post| %>
+<br/>
+<ul class="nav nav-tabs">
+  <li class='active'>
+    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+  </li>
+  <li>
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: "comments") %>
+  </li>
+</ul>
+
+
+
+
+<h2><%= @user.first_name %>'s Posts</h2>
+<% @user.posts.each do |post| %>
   <%= render 'posts/post', post: post %>
   <% end %>
   <br/>
-<h2><%= current_user.first_name %>'s Comments</h2>
-  <% current_user.comments.each do |comment| %>
+<h2><%= @user.first_name %>'s Comments</h2>
+  <% @user.comments.each do |comment| %>
     <div class="well">
       <%= comment.body %>
       <br/>

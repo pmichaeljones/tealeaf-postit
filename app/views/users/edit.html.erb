@@ -1,0 +1,11 @@
+<h3>Edit User Profile</h3>
+
+<%= form_for @user  do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %><br/>
+<%= f.label :first_name, "First Name" %>
+<%= f.text_field :first_name %><br/>
+<%= f.label :last_name, "Last Name" %>
+<%= f.text_field :last_name %><br/>
+<%= f.submit 'Edit', class: 'btn' %>
+<% end %>
