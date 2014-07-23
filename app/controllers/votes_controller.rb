@@ -14,6 +14,12 @@ class VotesController < ApplicationController
 
   end
 
+  def comment_vote
+    binding.pry
+    redirect_to :back
+  end
+
+
   private
 
 end

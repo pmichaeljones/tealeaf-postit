@@ -8,7 +8,7 @@ PostitTemplate::Application.routes.draw do
 
     resources :comments, only: [:create] do
       member do
-        post '/vote', to: 'votes#create'
+        post '/vote', to: 'votes#comment_vote'
       end
     end
 
