@@ -3,18 +3,32 @@
       HERE WE HAVE LINKS
     </div> -->
     <div class='span8 well'>
+      <% if @vote.nil? %>
+      <% elsif @vote.errors.any? %>
+        <div class="alert">
+          <% @vote.errors.full_messages.each do |error| %>
+            <%= puts error %>
+            <% end %>
+        </div>
+      <% end %>
+
+      <% if logged_in? %>
+        <div class='span0 well pull-right'>
+        <%= link_to vote_post_path(post, :vote => 'true'), method: 'post' do %>
+        <i class='icon-thumbs-up'></i>
+        <% end %>
+          <br/>
+          <%= post.total_votes %> Votes
+          <br/>
+        <%= link_to vote_post_path(post, :vote => 'false'), method: 'post' do %>
+        <i class='icon-thumbs-down'></i>
+        <% end %>
+        </div>
+      <% else %>
       <div class='span0 well pull-right'>
-      <p>Votes Baby!</p>
-      <%= link_to vote_post_path(post, :tab => 'up-vote'), method: 'post' do %>
-      <i class='icon-thumbs-up'></i>
-      Good Votes
-      <% end %>
-        <br/>
-      <%= link_to vote_post_path(post, :tab => 'down-vote'), method: 'post' do %>
-      <i class='icon-thumbs-down'></i>
-      Down Votes
-      <% end %>
+        <%= post.total_votes %> Total Votes
       </div>
+      <% end %>
 
       <%= render post.categories %>
 
