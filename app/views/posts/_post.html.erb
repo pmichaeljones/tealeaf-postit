@@ -5,11 +5,15 @@
     <div class='span8 well'>
       <div class='span0 well pull-right'>
       <p>Votes Baby!</p>
+      <%= link_to vote_post_path(post, :tab => 'up-vote'), method: 'post' do %>
       <i class='icon-thumbs-up'></i>
       Good Votes
+      <% end %>
         <br/>
+      <%= link_to vote_post_path(post, :tab => 'down-vote'), method: 'post' do %>
       <i class='icon-thumbs-down'></i>
       Down Votes
+      <% end %>
       </div>
 
       <%= render post.categories %>
