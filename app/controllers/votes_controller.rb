@@ -15,8 +15,16 @@ class VotesController < ApplicationController
   end
 
   def comment_vote
-    binding.pry
-    redirect_to :back
+    #binding.pry
+
+    if Vote.where(voteable:Comment.find(params[:id]), user_id:current_user.id).empty?
+      @vote = Vote.create(vote: params[:vote], voteable: Comment.find(params[:id]), user_id: current_user.id)
+      redirect_to :back
+    else
+      flash[:error] = "You already voted on that."
+      redirect_to :back
+    end
+
   end
 
 
