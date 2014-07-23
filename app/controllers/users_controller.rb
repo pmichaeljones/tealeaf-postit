@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_same_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -20,15 +21,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user)
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(current_user)
+    @user = User.find(params[:id])
 
     if @user.update(user_params)
       flash[:notice] = "Your Profile was Edited Successfully."
@@ -43,5 +44,16 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :first_name, :last_name, :password)
   end
+
+  def require_same_user
+    if current_user != @user
+      flash[:error] = "Sorry, can't do that."
+      redirect_to user_path
+    else
+      render :edit
+    end
+
+  end
+
 
 end
