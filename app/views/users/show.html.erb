@@ -4,18 +4,6 @@
 <h5>Username:</h5> <%= @user.username %>
 <br/>
 <br/>
-<ul class="nav nav-tabs">
-  <li class='active'>
-    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
-  </li>
-  <li>
-    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: "comments") %>
-  </li>
-</ul>
-
-
-
-
 <h2><%= @user.first_name %>'s Posts</h2>
 <% @user.posts.each do |post| %>
   <%= render 'posts/post', post: post %>

@@ -21,16 +21,17 @@ class UsersController < ApplicationController
   end
 
   def show
+    #binding.pry
     @user = User.find(params[:id])
   end
 
   def edit
+    #binding.pry
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-
     if @user.update(user_params)
       flash[:notice] = "Your Profile was Edited Successfully."
       redirect_to user_path(@user)
@@ -46,11 +47,10 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
+    @user = User.find(params[:id])
     if current_user != @user
       flash[:error] = "Sorry, can't do that."
       redirect_to user_path
-    else
-      render :edit
     end
 
   end

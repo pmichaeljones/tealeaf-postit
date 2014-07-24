@@ -1,6 +1,6 @@
  <ul class="nav">
   <li>
-    <%= link_to "Postit!", root_path, :class => 'brand' %>
+    <%= link_to "Patrick's Link Sharing Application Extravaganza!", root_path, :class => 'brand' %>
   </li>
 </ul>
 
@@ -44,11 +44,6 @@
       </li>
     </ul>
   </div>
-   <ul class="nav">
-  <li>
-    <%= link_to "Welcome Back, #{current_user.first_name}", user_path(current_user) %>
-  </li>
-  </ul>
 <% end %>
 <% if not logged_in? %>
    <div class="nav_item">
