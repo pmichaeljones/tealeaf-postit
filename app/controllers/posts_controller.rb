@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:show, :index]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by {|x| x.total_votes }.reverse
 
   end
 
