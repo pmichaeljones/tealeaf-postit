@@ -1,0 +1,6 @@
+<% if Vote.where(voteable:Post.find(params[:id]), user_id:current_user.id).empty? %>
+  <% @vote = Vote.create(vote: params[:vote], voteable: @post), user_id: current_user.id) %>
+  $("#post-<%= @post.id %>-number").html("<%= @post.votes.size %> Votes")
+<% else %>
+  alert("You already voted on that!")
+<% end %>
