@@ -3,6 +3,6 @@ class CreatePostCategories < ActiveRecord::Migration
     # create_table :post_categories do |t|
     #   t.integer :post_id, :user_id
     #   t.timestamps
-    end
+    #end
   end
 end
