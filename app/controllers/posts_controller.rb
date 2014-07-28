@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     #binding.pry
     @post = Post.new(post_params)
     #binding.pry
-    @post.slug = @post.title.split.join("-")
+
     @post.creator = current_user #change once we have authentication
     #binding.pry
     if @post.save
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by slug: params[:id]
   end
 
 

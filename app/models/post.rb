@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
 
+  before_save :generate_slug
+
   def up_votes
     self.votes.where(vote: true).size
   end
@@ -20,5 +22,14 @@ class Post < ActiveRecord::Base
   def total_votes
     up_votes - down_votes
   end
+
+  def generate_slug
+    self.slug = self.title.split(" ").join("-").downcase
+  end
+
+  def to_param
+    self.slug
+  end
+
 
 end
