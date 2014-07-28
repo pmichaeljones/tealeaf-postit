@@ -1,11 +1,10 @@
 class VotesController < ApplicationController
   before_action :require_user
-  respond_to :html, :js
 
   def create
     #binding.pry
 
-    @post = Post.find(params[:id])
+    @post = Post.find_by slug: params[:id]
     @vote = Vote.new(vote: params[:vote], voteable: @post, user_id: current_user.id)
     #binding.pry
 
@@ -33,8 +32,9 @@ class VotesController < ApplicationController
     #binding.pry
 
     @comment = Comment.find(params[:id])
+    #binding.pry
     @vote = Vote.new(vote: params[:vote], voteable: @comment, user_id: current_user.id)
-
+    #binding.pry
     respond_to do |format|
       format.html do
         if @vote.valid?

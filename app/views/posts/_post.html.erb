@@ -14,15 +14,15 @@
 
       <% if logged_in? %>
       <!-- jquery 'already commented' box -->
-      <div id="post-box-<%= post.id %>" class=""></div>
-        <div id='vote-box-<%= post.id%>'>
+      <div id="post-box-<%= post.slug %>" class=""></div>
+        <div id='vote-box-<%= post.slug%>'>
         </div>
         <div class='span0 well pull-right'>
         <%= link_to vote_post_path(post, :vote => 'true'), remote: true, method: 'post' do %>
         <i class='icon-thumbs-up'></i>
         <% end %>
           <br/>
-          <span id='post-<%= post.id %>-number'>
+          <span id='post-<%= post.slug %>-number'>
           <%= post.total_votes %> Votes
           </span>
           <br/>

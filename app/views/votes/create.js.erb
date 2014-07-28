@@ -1,8 +1,8 @@
 <% if @vote.valid? %>
   <% @vote.save %>
-  $("#post-<%= @post.id %>-number").html("<%= @post.total_votes %> Votes")
+  $("#post-<%= @post.slug %>-number").html("<%= @post.total_votes %> Votes")
 <% else %>
-  $("#post-box-<%= @post.id %>").html("You already voted on this post.").addClass("alert alert-error")
+  $("#post-box-<%= @post.slug %>").html("You already voted on this post.").addClass("alert alert-error")
   //alert("You already voted on that!")
 <% end %>
 
