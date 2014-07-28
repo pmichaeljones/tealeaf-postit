@@ -6,14 +6,14 @@ class VotesController < ApplicationController
     #binding.pry
 
     @post = Post.find(params[:id])
-
+    @vote = Vote.new(vote: params[:vote], voteable: @post, user_id: current_user.id)
     #binding.pry
 
     respond_to do |format|
 
       format.html do
-        if Vote.where(voteable:@post, user_id:current_user.id).empty?
-          @vote = Vote.create(vote: params[:vote], voteable: @post, user_id: current_user.id)
+        if @vote.valid?
+          @vote.save
           redirect_to :back
         else
           flash[:error] = "You already voted on that."
