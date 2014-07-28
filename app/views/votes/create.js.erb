@@ -2,9 +2,8 @@
   <% @vote.save %>
   $("#post-<%= @post.id %>-number").html("<%= @post.total_votes %> Votes")
 <% else %>
-  document.getElementById("#vote-box-<%= @post.id%>").className += " alert alert-error";
-  $("#vote-box-<%= @post.id%>").html("You already voted on this post")
-
+  $("#post-box-<%= @post.id %>").html("You already voted on this post.").addClass("alert alert-error")
+  //alert("You already voted on that!")
 <% end %>
 
 

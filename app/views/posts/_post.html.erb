@@ -13,6 +13,8 @@
       <% end %>
 
       <% if logged_in? %>
+      <!-- jquery 'already commented' box -->
+      <div id="post-box-<%= post.id %>" class=""></div>
         <div id='vote-box-<%= post.id%>'>
         </div>
         <div class='span0 well pull-right'>

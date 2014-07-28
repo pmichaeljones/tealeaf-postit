@@ -19,6 +19,8 @@ class PostsController < ApplicationController
   def create
     #binding.pry
     @post = Post.new(post_params)
+    #binding.pry
+    @post.slug = @post.title.split.join("-")
     @post.creator = current_user #change once we have authentication
     #binding.pry
     if @post.save

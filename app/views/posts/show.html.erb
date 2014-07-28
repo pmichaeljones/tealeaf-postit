@@ -34,13 +34,16 @@
       <div class="span8 well">
         <% if logged_in? %>
           <div class='span0 well pull-right'>
-            <%= link_to vote_post_comment_path(@post, comment, :vote => 'true'), method: 'post' do %>
+            <div id="comment-box-<%= comment.id %>-number" class=""></div>
+            <%= link_to vote_post_comment_path(@post, comment, :vote => 'true'), remote: true, method: 'post' do %>
             <i class='icon-thumbs-up'></i>
             <% end %>
               <br/>
-            <%= comment.total_votes %> Votes
+              <span id='comment-<%= comment.id %>-number'>
+                <%= comment.total_votes %> Votes
+              </span>
               <br/>
-            <%= link_to vote_post_comment_path(@post, comment, :vote => 'false'), method: 'post' do %>
+            <%= link_to vote_post_comment_path(@post, comment, :vote => 'false'), remote: true, method: 'post' do %>
             <i class='icon-thumbs-down'></i>
             <% end %>
           </div>

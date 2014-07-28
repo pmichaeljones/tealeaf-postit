@@ -32,10 +32,13 @@ class VotesController < ApplicationController
   def comment_vote
     #binding.pry
 
+    @comment = Comment.find(params[:id])
+    @vote = Vote.new(vote: params[:vote], voteable: @comment, user_id: current_user.id)
+
     respond_to do |format|
       format.html do
-        if Vote.where(voteable:Comment.find(params[:id]), user_id:current_user.id).empty?
-          @vote = Vote.create(vote: params[:vote], voteable: Comment.find(params[:id]), user_id: current_user.id)
+        if @vote.valid?
+          @vote.save
           redirect_to :back
         else
           flash[:error] = "You already voted on that."
@@ -44,13 +47,8 @@ class VotesController < ApplicationController
       end
 
       format.js do
-        # if Vote.where(voteable:Comment.find(params[:id]), user_id:current_user.id).empty?
-        #   @vote = Vote.create(vote: params[:vote], voteable: Comment.find(params[:id]), user_id: current_user.id)
-        # else
-        #   redirect_to :back
-        # end
-
       end
+
     end
 
 
