@@ -41,7 +41,7 @@
       <h4><%= link_to post.title, good_url(post.url), :target => "blank" %></h4> <!-- good_url is an application helper -->
       <p><%= post.description %></p>
         <p>
-          <span class=''>Posted by: <%= post.creator.username %></span><br/>
+          <span class=''>Posted by: <%= link_to "#{post.creator.username}", user_path(post.creator) %></span><br/>
           <span class=''>Posted on: <%= good_looking_time(post.created_at) %></span>
         </p>
       <small>

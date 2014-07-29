@@ -24,16 +24,16 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by slug: params[:id]
   end
 
 
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find_by slug: params[:id]
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find_by slug: params[:id]
 
     if @category.update(cat_params)
       flash[:notice] = "Successful Category Update"
