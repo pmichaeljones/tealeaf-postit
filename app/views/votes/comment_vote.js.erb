@@ -1,4 +1,4 @@
-<% if @vote.valid? %>
+ <% if @vote.valid? %>
   <% @vote.save %>
   $("#comment-<%= @comment.id %>-number").html("<%= @comment.total_votes %> Votes")
 <% else %>

@@ -9,5 +9,6 @@
 <%= f.text_field :first_name %><br/>
 <%= f.label :last_name, "Last Name" %>
 <%= f.text_field :last_name %><br/>
+<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
 <%= f.submit 'Edit', class: 'btn' %>
 <% end %>

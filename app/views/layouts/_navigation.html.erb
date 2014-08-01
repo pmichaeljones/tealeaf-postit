@@ -17,7 +17,7 @@
       <% end %>
     </ul>
 </div>
-<% if logged_in? %>
+<% if logged_in? && current_user.is_admin? %>
   <div class="nav_item">
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
   </div>
@@ -44,8 +44,7 @@
       </li>
     </ul>
   </div>
-<% end %>
-<% if not logged_in? %>
+<% else %>
    <div class="nav_item">
     <%= link_to 'Login', login_path, class: 'btn btn-small' %>
   </div>

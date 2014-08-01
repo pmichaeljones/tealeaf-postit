@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    #binding.pry
     @user = User.new(user_params)
     #binding.pry
 
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :password)
+    params.require(:user).permit(:username, :first_name, :last_name, :time_zone, :password)
   end
 
   def require_same_user

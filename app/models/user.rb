@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     self.slug
   end
 
+  def is_admin?
+    self.role == "admin"
+  end
+
 end
